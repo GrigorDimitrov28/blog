@@ -7,7 +7,7 @@ date: "11.01.2024"
 calories: "600"
 prepTime: "2 hours"
 macros: "16g of protein, 24g of fat, 35g of carbs per 100g"
-cover: "/basil-pasta.jpg"
+cover: "https://i.imgur.com/MjpGxin.jpg"
 id: "3"
 ---
 

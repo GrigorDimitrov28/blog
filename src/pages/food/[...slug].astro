@@ -4,14 +4,16 @@ import Recipe from "../../layouts/Recipe.astro";
 
 export async function getStaticPaths() {
     const recipes = await getCollection("food");
-    return recipes.map(r => ({
-        params: {slug: r.slug},
-        props: r
+    return recipes.map(recipe => ({
+        params: {slug: recipe.slug},
+        props: recipe
     }))
 }
 
 const recipe = Astro.props;
 const { Content } = await recipe.render();
+
+export const prerender = true;
 ---
 
 <Recipe {...recipe.data}>

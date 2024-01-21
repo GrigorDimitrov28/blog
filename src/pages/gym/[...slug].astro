@@ -12,6 +12,8 @@ export async function getStaticPaths() {
 
 const workout = Astro.props;
 const { Content } = await workout.render();
+
+export const prerender = true;
 ---
 
 <Workout {...workout.data}>

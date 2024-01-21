@@ -7,7 +7,7 @@ date: "10.01.2024"
 calories: "900"
 prepTime: "2 hours"
 macros: "16g of protein, 24g of fat, 35g of carbs per 100g"
-cover: "/pizza.jpg"
+cover: "https://i.imgur.com/yicrHUO.jpg"
 id: "2"
 ---
 

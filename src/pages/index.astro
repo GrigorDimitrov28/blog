@@ -19,13 +19,13 @@ const latestWorkouts = (await getCollection("gym"));
 		<Header></Header>
 		<main id="root" class="relative">
 			<section class="bg-cream w-[100vw] flex flex-col pt-4 pb-4 lg:flex-row lg:h-auto xl:h-[80vh] lg:justify-center lg:items-center min-h-[35em]">
-				<Animated client:load extraStyles=""><img src="/self-1.jpg" alt="my portrait" class="hidden xl:block xl:h-[30em] xl:mt-4 xl:ml-[5vw] translate-y-[2em]"> </Animated>
+				<Animated client:load extraStyles=""><img src="https://i.imgur.com/Lhtz5tp.jpg" alt="my portrait" class="hidden xl:block xl:h-[30em] xl:mt-4 xl:ml-[5vw] translate-y-[2em]"> </Animated>
 				<Animated client:load extraStyles="flex flex-col xl:w-[60%] 2xl:w-[50%] xl:h-[30em]">
 					<h3 class="font-baskerville w-[90%] mx-auto mt-8 text-3xl text-center leading-normal lg:mx-auto">Welcome to my blog. <br> Join me on my culinary and fitness journey.</h3>
 					<span class="mx-auto mt-4 mb-6 font-semibold tracking-wider text-sm">ABOUT ME</span>
 					
 					<div class="md:flex md:h-[30em]">
-						<img src="/self-1.jpg" alt="my portrait" class="hidden md:block md:h-[25em] md:mt-4 md:ml-[5vw] xl:hidden">
+						<img src="https://i.imgur.com/Lhtz5tp.jpg" alt="my portrait" class="hidden md:block md:h-[25em] md:mt-4 md:ml-[5vw] xl:hidden">
 						<p class="ml-[5vw] mr-[5vw] mt-8 mb-8 text-base md:mt-2">Hello and welcome!<br/><br/> My name is Grigor and I am a web developer. For most of my life I've been passionate about food, sports and a few other activities. I've been creating projects for my portfolio and I decided to make this blog. This way I get some good practice and I get to share everything I'm passionate about with other people.
 							<br><br>
 						I've added several sections for different types of content. A lot of what I'll be sharing is just me exploring and learning about different things so most of the time I'll be giving to the actual source of information.
@@ -38,18 +38,18 @@ const latestWorkouts = (await getCollection("gym"));
 				<h3 class="ml-[5vw] mb-5 mt-5 text-sm tracking-wider font-semibold">PERSONAL PROJECTS</h4>
 				<ul class="grid grid-cols-2 w-[90%] mx-auto 3xl:grid-cols-3 2xl:w-[70vw]">
 					<Animated client:idle extraStyles="">
-						<Card title="Portfolio" imgLink="/portfolio.PNG" description="My portfolio project built with React." link="https://curious-liger-66a537.netlify.app/#"/>
+						<Card title="Portfolio" imgLink="https://i.imgur.com/GQrtqvf.png" description="My portfolio project built with React." link="https://curious-liger-66a537.netlify.app/#"/>
 					</Animated>
 					<Animated client:idle extraStyles="">
-						<Card title="FundFast" imgLink="/Fundfast.PNG" description="A crowdfunding website I made for my React course in SoftUni. (not live yet)" link="https://github.com/GrigorDimitrov28/FundFast"/>
-					</Animated>
-					
-					<Animated client:idle extraStyles="">
-						<Card title="Sudoku" imgLink="/sudoku.PNG" description="A sudoku game built I created with React. (not live yet)" link="https://github.com/GrigorDimitrov28/Sudoku"/>
+						<Card title="FundFast" imgLink="https://i.imgur.com/pKWd3ci.png" description="A crowdfunding website I made for my React course in SoftUni. (not live yet)" link="https://github.com/GrigorDimitrov28/FundFast"/>
 					</Animated>
 					
 					<Animated client:idle extraStyles="">
-						<Card title="Quizzie" description="A quiz website I built for my Angular course in Softuni." imgLink="/quizzie.PNG" link="https://github.com/GrigorDimitrov28/Quizzie"/>
+						<Card title="Sudoku" imgLink="https://i.imgur.com/4O5Uspv.png" description="A sudoku game built I created with React. (not live yet)" link="https://github.com/GrigorDimitrov28/Sudoku"/>
+					</Animated>
+					
+					<Animated client:idle extraStyles="">
+						<Card title="Quizzie" description="A quiz website I built for my Angular course in Softuni." imgLink="https://i.imgur.com/IgGhr4B.png" link="https://github.com/GrigorDimitrov28/Quizzie"/>
 					</Animated>
 				</ul>
 			</section>
@@ -107,7 +107,7 @@ const latestWorkouts = (await getCollection("gym"));
 					{
 						latestWorkouts.slice(0,4).map((r) => (
 							<Animated client:visible extraStyles="">
-								<Card title={r.data.title} description={r.data.description} imgLink="/workout-cover.jpg" link={"/gym/" + r.slug} trim={true}/>
+								<Card title={r.data.title} description={r.data.description} imgLink="https://i.imgur.com/bcL1729.jpg" link={"/gym/" + r.slug} trim={true}/>
 							</Animated>
 						))
 					}

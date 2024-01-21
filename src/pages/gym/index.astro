@@ -28,7 +28,7 @@ const workouts = (await getCollection("gym"));
 			<ul class="w-[84vw] mb-[10em] mx-auto grid grid-cols-2 mt-4 lg:grid-cols-3 lg:w-[80vw] xl:w-[76vw] xl:grid-cols-4 2xl:w-[70vw] ">
 				{workouts.map(workout => (
           <Animated client:visible extraStyles="">
-            <Card link={workout.slug} title={workout.data.title} description={workout.data.description}/>
+            <Card link={workout.slug} title={workout.data.title} description={workout.data.description} imgLink="https://i.imgur.com/bcL1729.jpg"/>
           </Animated>
 				))}
 			</ul>

@@ -1,12 +1,12 @@
 ---
-const { link, title, description } = Astro.props;
+const { link, title, description, imgLink } = Astro.props;
 ---
 
 <li class="w-[40vw] mx-auto mb-8 lg:w-[25vw] xl:w-[18vw] 2xl:w-[16vw]">
     <a href={"/gym/" + link}>
         <div class="w-full overflow-hidden">
             <img
-                src="/workout-cover.jpg"
+                src={imgLink}
                 alt="card cover"
                 class="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
                   />
