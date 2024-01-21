@@ -1,0 +1,96 @@
+---
+import Navigation from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Card from "../components/FeaturedCard.astro";
+import Animated from "../components/Animated";
+import {getCollection} from "astro:content";
+import NavArrow from "../components/NavArrow";
+
+const featuredRecipes = (await getCollection("food"));
+const { title, description, category, date, calories, prepTime, macros, cover, } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <BaseHead title={title} description={description}/>
+    </head>
+
+    <body class="relative">
+        <Navigation />
+
+        <main>
+            <article class="flex flex-col">
+                <div class="lg:flex">
+                    <Animated client:load extraStyles="w-[90vw] mx-auto h-[25em] md:h-[30em] lg:h-[40em] lg:w-auto lg:ml-[5vw] lg:mt-4 2xl:ml-[15vw]">
+                        {cover && <img src={cover} alt="recipe cover" class="mt-4 object-cover h-full w-full translate-y-[2em] lg:mt-0"/>}
+                    </Animated>
+
+                    <Animated client:load extraStyles="lg:flex lg:flex-col lg:w-[90vw] lg:mt-2 2xl:mr-[15vw] pt-[2em]">
+                        <span class="ml-[5vw] mt-2 tracking-wider text-xs font-normal">Added on: {date}</span>
+                        <span class="ml-[5vw] mt-1 mb-3 tracking-wider text-sm font-semibold">{category}</span>
+                        <h1 class="ml-[5vw] mt-6 font-baskerville text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl">{title}</h1>
+                        <p class="ml-[5vw] mt-4 text-lg w-[90vw] lg:w-[80%]">{description}</p>
+
+                        <div class="flex h-12 w-[90vw] mx-auto mt-6 lg:w-[80%]">
+                            <img src="/clock.svg" alt="clock" class="">
+                            <span class="mt-auto mb-auto ml-4">{prepTime}</span>
+                        </div>
+
+                        <div class="flex h-12 w-[90vw] mx-auto mt-6 lg:w-[80%]">
+                            <img src="/calories.svg" alt="clock" class="">
+                            <span class="mt-auto mb-auto ml-4">{calories} {" kcal"}, {macros}</span>
+                        </div>
+                    </Animated>
+                </div>
+                
+                <div class="w-[90vw] mx-auto mt-8 flex flex-col lg:w-[60vw] lg:ml-[15vw]">
+                    <Animated client:visible extraStyles="">
+                        <slot />
+                    </Animated>
+                    
+                </div>
+            </article>
+
+            <section class="mt-4 w-[90%] mx-auto 3xl:ml-[15vw] lg:w-[70%]">
+                <h3 class="font-baskerville mb-4 font-semibold">Video Tutorial</h3>
+                
+                <Animated client:visible extraStyles="">
+                    <iframe class="h-[25em] w-full max-w-[692px] translate-y-[2em]" src="https://www.youtube.com/embed/8Wn-BJtRRyo?si=vws-tiRefD0-4u70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </Animated>
+        
+            </section>
+        </main>
+        <section class="w-[90%] xl:w-[70%] 2xl:w-[90%] 3xl:w-[70%] mx-auto mt-20 pt-4 border-t-[1px] border-t-black">
+            <h3 class="font-baskerville mb-4">Recommended</h3>
+            <ul id="recommended-recipes" class="grid grid-cols-2 w-full mx-auto 2xl:grid-cols-3">{featuredRecipes.filter((recipe) => recipe.data.category == category).slice(0,4).map(recipe => {
+                return <Animated client:visible extraStyles="">
+                    <Card imgLink={recipe.data.cover} title={recipe.data.title} description={recipe.data.description} trim={true} link={recipe.slug}/>
+                    </Animated>
+            })}</ul>
+        </section>
+        <NavArrow client:idle />
+        <Footer />
+        <style is:inline>
+            ul:not(#top-nav, #bottom-nav, #bottom-social, #recommended-recipes) {
+                list-style: circle;
+                padding-left: 2.5vw;
+            }
+            ul li {
+                margin-bottom: 0.2em;
+            }
+            ol{
+                list-style: decimal;
+                padding-left: 2.5vw;
+            }
+
+            ol li {
+                margin-bottom: 0.50em;
+            }
+            h2 {
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+        </style>
+    </body>
+</html>

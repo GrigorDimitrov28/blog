@@ -1,0 +1,120 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Card from "../components/FeaturedCard.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Animated from "../components/Animated";
+import NavArrow from "../components/NavArrow";
+import {getCollection} from "astro:content";
+
+const featuredRecipes = (await getCollection("food"));
+const latestWorkouts = (await getCollection("gym"));
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title="Cooks & Curls" description="Welcome to my blog!" />
+	</head>
+	<body class="overflow-x-hidden">
+		<Header></Header>
+		<main id="root" class="relative">
+			<section class="bg-cream w-[100vw] flex flex-col pt-4 pb-4 lg:flex-row lg:h-auto xl:h-[80vh] lg:justify-center lg:items-center min-h-[35em]">
+				<Animated client:load extraStyles=""><img src="/self-1.jpg" alt="my portrait" class="hidden xl:block xl:h-[30em] xl:mt-4 xl:ml-[5vw] translate-y-[2em]"> </Animated>
+				<Animated client:load extraStyles="flex flex-col xl:w-[60%] 2xl:w-[50%] xl:h-[30em]">
+					<h3 class="font-baskerville w-[90%] mx-auto mt-8 text-3xl text-center leading-normal lg:mx-auto">Welcome to my blog. <br> Join me on my culinary and fitness journey.</h3>
+					<span class="mx-auto mt-4 mb-6 font-semibold tracking-wider text-sm">ABOUT ME</span>
+					
+					<div class="md:flex md:h-[30em]">
+						<img src="/self-1.jpg" alt="my portrait" class="hidden md:block md:h-[25em] md:mt-4 md:ml-[5vw] xl:hidden">
+						<p class="ml-[5vw] mr-[5vw] mt-8 mb-8 text-base md:mt-2">Hello and welcome!<br/><br/> My name is Grigor and I am a web developer. For most of my life I've been passionate about food, sports and a few other activities. I've been creating projects for my portfolio and I decided to make this blog. This way I get some good practice and I get to share everything I'm passionate about with other people.
+							<br><br>
+						I've added several sections for different types of content. A lot of what I'll be sharing is just me exploring and learning about different things so most of the time I'll be giving to the actual source of information.
+							<br><br>I hope you enjoy it. I plan on developing this blog for the future so I can cover even more of the things I'm interested in. </p>
+					</div>
+				</Animated>
+			</section>
+
+			<section class="min-h-[80vh]">
+				<h3 class="ml-[5vw] mb-5 mt-5 text-sm tracking-wider font-semibold">PERSONAL PROJECTS</h4>
+				<ul class="grid grid-cols-2 w-[90%] mx-auto 3xl:grid-cols-3 2xl:w-[70vw]">
+					<Animated client:idle extraStyles="">
+						<Card title="Portfolio" imgLink="/portfolio.PNG" description="My portfolio project built with React." link="https://curious-liger-66a537.netlify.app/#"/>
+					</Animated>
+					<Animated client:idle extraStyles="">
+						<Card title="FundFast" imgLink="/Fundfast.PNG" description="A crowdfunding website I made for my React course in SoftUni. (not live yet)" link="https://github.com/GrigorDimitrov28/FundFast"/>
+					</Animated>
+					
+					<Animated client:idle extraStyles="">
+						<Card title="Sudoku" imgLink="/sudoku.PNG" description="A sudoku game built I created with React. (not live yet)" link="https://github.com/GrigorDimitrov28/Sudoku"/>
+					</Animated>
+					
+					<Animated client:idle extraStyles="">
+						<Card title="Quizzie" description="A quiz website I built for my Angular course in Softuni." imgLink="/quizzie.PNG" link="https://github.com/GrigorDimitrov28/Quizzie"/>
+					</Animated>
+				</ul>
+			</section>
+
+			<section class="bg-cream w-[100vw]">
+				<Animated client:visible extraStyles="md:w-[80%] flex flex-col md:mx-auto xl:w-[60%] 3xl:w-[50%]">
+					<h3 class=" font-baskerville mx-auto text-3xl mt-12 text-center ml-[10vw] mr-[10vw] leading-normal 3xl:mt-20">About my cooking inspiration.</h3>
+					<span class="mx-auto mt-10 font-semibold tracking-wider text-sm">HOW I STARTED COOKING</span>
+					<p class="ml-[5vw] mr-[5vw] mt-8 mb-8 text-base 3xl:mb-20">
+						I've loved food for as long as I can remember. As a kid I would eat anything and everything but as I grew I started wondering how the food was made and how I could make it taste better.
+						<br><br>
+						I started cooking for myself and my family right after I graduated from highschool. Covid-19 had just taken over the world and everybody was stuck in their home. I needed something interesting to do so I binged pretty much every season of the original Hell's Kitchen. All the drama made me want to try cooking something so I made my first scrambled eggs. I've been hooked ever since.
+						<br><br>
+						Initially I started with simple dishes like eggs, potatoes, rice and other vegetables. It didn't take me long to move to more complex recipes. Cooking was both an interesting hobby and a helpful skill I could use to prepare better food for my diet.
+						<br><br>
+						Right now I'm going through my mother and grandmother's recipe book as well as following a few cooking channels on YouTube. If you want to find out more about what I've tried to make so far go to the Food section of my blog. I give detailed descriptions of each recipe as well as what made me try it.
+					</p>
+				</Animated>
+				
+			</section>
+
+			<section class="min-h-[80vh]">
+				<h3 class="ml-[5vw] mb-5 mt-5 text-sm tracking-wider font-semibold">MY FAVORITE RECIPES</h4>
+				<ul class="grid grid-cols-2 w-[90%] mx-auto 3xl:grid-cols-3 2xl:w-[70vw]">
+					{
+						featuredRecipes.slice(0,4).map((r) => (
+							<Animated client:idle extraStyles="">
+								<Card title={r.data.title} description={r.data.description} imgLink={r.data.cover} link={"/food/" + r.slug} trim={true}/>
+							</Animated>
+							
+						))
+					}
+				</ul>
+			</section>
+
+			<section class="bg-cream w-[100vw] flex flex-col">
+				<Animated client:visible extraStyles="md:w-[80%] flex flex-col md:mx-auto xl:w-[60%] 3xl:w-[50%]">
+					<h3 class=" font-baskerville mx-auto text-3xl mt-12 text-center ml-[10vw] mr-[10vw] leading-normal 3xl:mt-20">How I started going to the gym and my current workout plan.</h3>
+					<span class="mx-auto mt-10 font-semibold tracking-wider text-sm">MY FITNESS JOURNEY</span>
+					<p class="ml-[5vw] mr-[5vw] mt-8 mb-8 text-base 3xl:mb-20">
+						Sports and general physical activity have been part of my life for more than 15 years. When I was a kid I used to play handball in a team as well as some volleyball. Not to mention the countless hours spent outside playing football with other kids.
+						<br> <br>
+						During my first year in highschool I decided to start hitting the gym. Back then I was on the skinnier side and I wanted to bulk up a little bit. Throughout my highschool years I had an on-and-off relationship with the gym, took up swimming for a good while and practiced some basic calisthenics.
+						<br> <br>
+						When everything was closed during Covid-19 I had to find another way of staying fit and healthy. That's when I started running more seriously with the goal of hitting a 30-minute 5K. I've been running for a few years now and the health benefits are awesome.
+						<br> <br>
+						A few months ago I started going to the gym again with the hope of combining running and strength training together. In this blog I plan to post weekly updates of my goals and progress as well as what I'm reading and watching on the internet.
+					</p>
+				</Animated>	
+			</section>
+
+			<section class="min-h-[80vh]">
+				<h3 class="ml-[5vw] mb-5 mt-5 text-sm tracking-wider font-semibold">WORKOUT PROGRESS</h4>
+				<ul class="grid grid-cols-2 w-[90%] mx-auto 3xl:grid-cols-3 2xl:w-[70vw]">
+					{
+						latestWorkouts.slice(0,4).map((r) => (
+							<Animated client:visible extraStyles="">
+								<Card title={r.data.title} description={r.data.description} imgLink="/workout-cover.jpg" link={"/gym/" + r.slug} trim={true}/>
+							</Animated>
+						))
+					}
+				</ul>
+			</section>
+			<NavArrow client:idle />
+		</main>
+		<Footer />
+	</body>
+</html>

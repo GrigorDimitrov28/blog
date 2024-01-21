@@ -1,0 +1,25 @@
+---
+import Navigation from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import BaseHead from "../../components/BaseHead.astro";
+import SearchGrid from "../../components/SearchGrid";
+import {getCollection} from "astro:content";
+
+const featuredRecipes = (await getCollection("food"));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Recipes" description="Recipes I've tried so far." />
+	</head>
+	<body>
+		<Navigation active="Food"/>
+		
+		<main class="min-h-[90vh]">
+			<SearchGrid content={featuredRecipes} client:load/>
+		</main>
+
+		<Footer />
+	</body>
+</html>

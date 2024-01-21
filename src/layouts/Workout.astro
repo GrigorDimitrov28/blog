@@ -1,0 +1,66 @@
+---
+import Navigation from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Card from "../components/FeaturedCard.astro";
+import {getCollection} from "astro:content";
+import NavArrow from "../components/NavArrow";
+import Animated from "../components/Animated";
+
+const workouts = (await getCollection("gym"));
+const { title, description, category, date } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <BaseHead title={title} description={description}/>
+    </head>
+
+    <body class="relative">
+        <Navigation />
+
+        <main class="mb-20">
+            <article class="flex flex-col">
+                <div class="lg:flex">
+                    <Animated client:load extraStyles="w-[90vw] mx-auto h-[25em] md:h-[30em] lg:h-[40em] lg:w-auto lg:ml-[5vw] lg:mt-4 2xl:ml-[15vw]">
+                        <img src="/workout-cover.jpg" alt="recipe cover" class="object-cover h-full w-full"/>
+                    </Animated>
+
+                    <Animated client:load extraStyles="lg:flex lg:flex-col lg:w-[90vw] lg:mt-2 2xl:mr-[15vw]">
+                        <span class="ml-[5vw] mt-2 tracking-wider text-xs font-normal">Added on: {date}</span>
+                        <span class="ml-[5vw] mt-1 mb-3 tracking-wider text-sm font-semibold">{category}</span>
+                        <h1 class="ml-[5vw] mt-6 font-baskerville text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl">{title}</h1>
+                        <p class="ml-[5vw] mt-4 text-lg w-[90vw] lg:w-[80%]">{description}</p>
+                    </Animated>
+                </div>
+
+                <Animated client:idle extraStyles="w-[90vw] mx-auto mt-8 flex flex-col lg:w-[60vw] lg:ml-[15vw]">
+                    <slot /> 
+                </Animated>
+            </article>
+        </main>
+        <NavArrow client:idle />
+        <Footer />
+        <style is:inline>
+            ul:not(#top-nav, #bottom-nav, #bottom-social, #recommended-recipes) {
+                list-style: circle;
+                padding-left: 2.5vw;
+            }
+            ul li {
+                margin-bottom: 0.2em;
+            }
+            ol{
+                list-style: decimal;
+                padding-left: 2.5vw;
+            }
+
+            ol li {
+                margin-bottom: 0.50em;
+            }
+            h2 {
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+        </style>
+    </body>
+</html>

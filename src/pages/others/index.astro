@@ -1,0 +1,28 @@
+---
+import Navigation from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import BaseHead from "../../components/BaseHead.astro";
+import NavArrow from "../../components/NavArrow";
+import {getCollection} from "astro:content";
+
+const others = (await getCollection("others"));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Others" description="Other things I'm interested in." />
+	</head>
+	<body class="relative">
+		<Navigation active="Others"/>
+		
+		<main class="min-h-[90vh] flex flex-col">
+      		<h1 class="font-baskerville text-2xl mx-auto mt-4 mb-12 2xl:text-4xl xl 2xl:mt-16">
+        		No posts yet.
+      		</h1>
+		</main>
+		<NavArrow client:idle />
+		<Footer />
+	</body>
+</html>
+

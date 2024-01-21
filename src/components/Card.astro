@@ -1,0 +1,21 @@
+---
+const { link, title, description } = Astro.props;
+---
+
+<li class="w-[40vw] mx-auto mb-8 lg:w-[25vw] xl:w-[18vw] 2xl:w-[16vw]">
+    <a href={"/gym/" + link}>
+        <div class="w-full overflow-hidden">
+            <img
+                src="/workout-cover.jpg"
+                alt="card cover"
+                class="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
+                  />
+            </div>
+
+            <h4 class="font-baskerville md:text-lg mt-2">
+                {title}
+            </h4>
+    </a>
+
+    <p class="text-sm md:text-base line-clamp-2">{description}</p>
+</li>	

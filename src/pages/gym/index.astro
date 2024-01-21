@@ -1,0 +1,39 @@
+---
+import Navigation from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import BaseHead from "../../components/BaseHead.astro";
+import Card from "../../components/Card.astro";
+import Animated from "../../components/Animated";
+import NavArrow from "../../components/NavArrow";
+import {getCollection} from "astro:content";
+
+const workouts = (await getCollection("gym"));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Gym" description="My current workout plan." />
+	</head>
+	<body class="relative">
+		<Navigation active="Gym"/>
+		
+		<main class="min-h-[90vh] flex flex-col">
+      <h1 class="font-baskerville text-2xl mx-auto mt-4 mb-12 2xl:text-4xl xl 2xl:mt-16">
+        My Workouts
+      </h1>
+      <h2 class="w-[50%] text-center font-baskerville text-xl mx-auto mb-12 2xl:text-2xl xl 2xl:mt-2">
+        Section is filled with dummy content for development purposes!
+      </h2>
+			<ul class="w-[84vw] mb-[10em] mx-auto grid grid-cols-2 mt-4 lg:grid-cols-3 lg:w-[80vw] xl:w-[76vw] xl:grid-cols-4 2xl:w-[70vw] ">
+				{workouts.map(workout => (
+          <Animated client:visible extraStyles="">
+            <Card link={workout.slug} title={workout.data.title} description={workout.data.description}/>
+          </Animated>
+				))}
+			</ul>
+		</main>
+    <NavArrow client:idle />
+		<Footer />
+	</body>
+</html>

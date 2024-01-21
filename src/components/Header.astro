@@ -1,0 +1,16 @@
+---
+const { active } = Astro.props;
+---
+
+<header class="border-b-[1px] border-b-gray-200">
+    <nav class="flex h-16">
+        <div class="mt-auto mb-auto ml-[5vw]">
+            <h1><a href="/" title="Home" class="font-baskerville font-medium text-lg">Cooks & Curls</a></h1>
+        </div>
+        <ul id="top-nav" class="flex gap-2 mt-auto mb-auto mr-[5vw] ml-auto">
+            <li><a href="/food" title="Food" class=`transition-all duration-300 relative after:content-[''] after:absolute after:bg-black after:w-0 after:h-[1px] after:bottom-[-2px] after:left-0 hover:after:w-[100%] hover:after:transition-all hover:after:duration-500 ${ active == "Food" ? "text-gray-600": ""}`>Food</a></li>
+            <li><a href="/gym" title="Gym" class=`transition-all duration-300 relative after:content-[''] after:absolute after:bg-black after:w-0 after:h-[1px] after:bottom-[-2px] after:left-0 hover:after:w-[100%] hover:after:transition-all hover:after:duration-500 ${ active == "Gym" ? "text-gray-600": ""}`>Gym</a></li>
+            <li><a href="/others" title="Others" class=`transition-all duration-300 relative after:content-[''] after:absolute after:bg-black after:w-0 after:h-[1px] after:bottom-[-2px] after:left-0 hover:after:w-[100%] hover:after:transition-all hover:after:duration-500 ${ active == "Others" ? "text-gray-600": ""}`>Others</a></li>
+        </ul>
+    </nav>
+</header>

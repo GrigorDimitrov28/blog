@@ -1,0 +1,15 @@
+---
+const { imgLink, title, description, link, trim} = Astro.props;
+---
+
+<li class="w-[40vw] mb-8 max-w-[420px] mx-auto translate-y-[2em]">
+    <a href={link}>
+        <div class="w-full overflow-hidden">
+            <img src={imgLink} alt="project cover" class="hover:scale-125 transition-all duration-300 object-cover w-full h-full"/>
+        </div>
+            
+        <h4 class="font-baskerville md:text-lg mt-2 hover:opacity-70">{title}</h4>	
+    </a>
+            
+    <p class={trim ? "line-clamp-2 text-sm md:text-base" : "text-sm md:text-base"}>{description}</p>
+</li>

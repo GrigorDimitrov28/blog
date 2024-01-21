@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Workout from "../../layouts/Workout.astro";
+
+export async function getStaticPaths() {
+    const workouts = await getCollection("gym");
+    return workouts.map(r => ({
+        params: {slug: r.slug},
+        props: r
+    }))
+}
+
+const workout = Astro.props;
+const { Content } = await workout.render();
+---
+
+<Workout {...workout.data}>
+    <Content />
+</Workout>
