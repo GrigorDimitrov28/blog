@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import Animated from "./Animated";
 import NavArrow from "./NavArrow";
+import * as pkg from "react-lazy-load-image-component";
+
+const { LazyLoadImage } = pkg;
 
 function SearchGrid({ content }) {
   const [searchValue, setSearchValue] = useState("");
@@ -13,7 +16,7 @@ function SearchGrid({ content }) {
   const filterRef = useRef(null);
 
   useEffect(() => {
-    setRenderedContent(content);
+    setRenderedContent(content.sort((a, b) => a.data.id - b.data.id));
   }, [content]);
 
   return (
@@ -266,12 +269,21 @@ function SearchGrid({ content }) {
               >
                 <a href={"/food/" + r.slug}>
                   <div className="w-full overflow-hidden">
-                    <img
-                      loading={r.data.id <= 8 ? "lazy" : "eager"}
-                      src={r.data.cover}
-                      alt="cover"
-                      className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
-                    />
+                    {r.data.id <= 8 ? (
+                      <img
+                        src={r.data.cover}
+                        alt="cover"
+                        className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
+                      />
+                    ) : (
+                      <LazyLoadImage
+                        src={r.data.cover}
+                        height="300px"
+                        width="100%"
+                        alt="cover"
+                        className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
+                      />
+                    )}
                   </div>
 
                   <h4 className="font-baskerville md:text-lg mt-2">
