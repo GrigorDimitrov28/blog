@@ -7,7 +7,7 @@ date: "11.01.2024"
 calories: "600"
 prepTime: "2 hours"
 macros: "16g of protein, 24g of fat, 35g of carbs per 100g"
-cover: "https://i.imgur.com/MjpGxin.jpg"
+cover: "https://res.cloudinary.com/fundfast-cloudimage/image/upload/f_auto,q_auto/v1/blog/rvfwzknmjw4cqc9hbxpx"
 id: "3"
 ---
 
