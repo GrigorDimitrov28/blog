@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import Animated from "./Animated";
-import Card from "./Card.astro";
 import NavArrow from "./NavArrow";
 
 function SearchGrid({ content }) {
@@ -268,6 +267,7 @@ function SearchGrid({ content }) {
                 <a href={"/food/" + r.slug}>
                   <div className="w-full overflow-hidden">
                     <img
+                      loading={r.data.id <= 8 ? "lazy" : "eager"}
                       src={r.data.cover}
                       alt="cover"
                       className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
