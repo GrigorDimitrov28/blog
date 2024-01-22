@@ -269,21 +269,14 @@ function SearchGrid({ content }) {
               >
                 <a href={"/food/" + r.slug}>
                   <div className="w-full overflow-hidden">
-                    {r.data.id <= 8 ? (
-                      <img
-                        src={r.data.cover}
-                        alt="cover"
-                        className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
-                      />
-                    ) : (
-                      <LazyLoadImage
-                        src={r.data.cover}
-                        height="300px"
-                        width="100%"
-                        alt="cover"
-                        className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
-                      />
-                    )}
+                    <img
+                      loading={r.data.id <= 8 ? "eager" : "lazy"}
+                      height="360"
+                      width="640"
+                      src={r.data.cover}
+                      alt="cover"
+                      className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
+                    />
                   </div>
 
                   <h4 className="font-baskerville md:text-lg mt-2">
