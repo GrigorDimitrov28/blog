@@ -1,9 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Animated from "./Animated";
 import NavArrow from "./NavArrow";
-import * as pkg from "react-lazy-load-image-component";
-
-const { LazyLoadImage } = pkg;
 
 function SearchGrid({ content }) {
   const [searchValue, setSearchValue] = useState("");
@@ -14,10 +11,19 @@ function SearchGrid({ content }) {
   const [filterActive, setFilterActive] = useState(false);
 
   const filterRef = useRef(null);
+  const body = document.getElementById("food-container");
 
   useEffect(() => {
     setRenderedContent(content.sort((a, b) => a.data.id - b.data.id));
   }, [content]);
+
+  useEffect(() => {
+    if (filterActive) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+  }, [filterActive]);
 
   return (
     <section className="relative flex flex-col">
@@ -280,7 +286,7 @@ function SearchGrid({ content }) {
                   </div>
 
                   <h4 className="font-baskerville md:text-lg mt-2">
-                    {r.data.title}
+                    {r.data.title + " -> " + r.data.id}
                   </h4>
                 </a>
 
@@ -291,7 +297,7 @@ function SearchGrid({ content }) {
             </Animated>
           ))}
       </ul>
-      <NavArrow client:idle />
+      {!filterActive && <NavArrow client:idle />}
     </section>
   );
 }

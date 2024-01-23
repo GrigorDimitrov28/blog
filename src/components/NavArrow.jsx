@@ -23,7 +23,7 @@ function NavArrow() {
       }}
       src="/arrow-up.svg"
       alt=""
-      className={`fixed z-10 max-w-[42px] bottom-4 right-4 w-[6vw] hover:cursor-pointer hover:translate-y-[-4px] transition-transform duration-300 ${
+      className={`fixed z-10 bottom-4 right-4 w-[2em] hover:cursor-pointer hover:translate-y-[-4px] transition-transform duration-300 ${
         isVisible ? "visible" : "invisible"
       }`}
     />

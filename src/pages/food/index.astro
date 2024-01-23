@@ -13,11 +13,11 @@ const featuredRecipes = (await getCollection("food"));
 	<head>
 		<BaseHead title="Recipes" description="Recipes I've tried so far." />
 	</head>
-	<body>
+	<body id="food-container">
 		<Navigation active="Food"/>
 		
 		<main class="min-h-[90vh]">
-			<SearchGrid content={featuredRecipes} client:load/>
+			<SearchGrid content={featuredRecipes} client:only="react"/>
 		</main>
 
 		<Footer />
