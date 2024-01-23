@@ -286,7 +286,7 @@ function SearchGrid({ content }) {
                   </div>
 
                   <h4 className="font-baskerville md:text-lg mt-2">
-                    {r.data.title + " -> " + r.data.id}
+                    {r.data.title}
                   </h4>
                 </a>
 
