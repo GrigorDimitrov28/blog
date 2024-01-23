@@ -3,7 +3,7 @@ const { imgLink, title, description, link, trim} = Astro.props;
 ---
 
 <li class="w-[40vw] mb-8 max-w-[420px] mx-auto translate-y-[2em]">
-    <a href={link}>
+    <a href={"/food/" + link}>
         <div class="w-full overflow-hidden">
             <img src={imgLink} alt="project cover" class="hover:scale-125 transition-all duration-300 object-cover w-full h-full"/>
         </div>

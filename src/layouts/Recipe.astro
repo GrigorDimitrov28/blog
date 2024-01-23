@@ -64,6 +64,7 @@ const { title, description, category, date, calories, prepTime, macros, cover, i
         <section class="w-[90%] xl:w-[70%] 2xl:w-[90%] 3xl:w-[70%] mx-auto mb-12 mt-20 pt-4 border-t-[1px] border-t-black">
             <h3 class="font-baskerville mb-4">Recommended</h3>
             <ul id="recommended-recipes" class="grid grid-cols-2 w-full mx-auto 2xl:grid-cols-3">{featuredRecipes.filter((recipe) => recipe.data.category == category && recipe.data.id !== id).slice(0,4).map(recipe => {
+                console.log(recipe.slug);
                 return <Animated client:visible extraStyles="">
                     <Card imgLink={recipe.data.cover} title={recipe.data.title} description={recipe.data.description} trim={true} link={recipe.slug}/>
                     </Animated>
