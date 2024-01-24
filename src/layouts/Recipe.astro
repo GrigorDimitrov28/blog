@@ -66,7 +66,7 @@ const { title, description, category, date, calories, prepTime, macros, cover, i
             <ul id="recommended-recipes" class="grid grid-cols-2 w-full mx-auto 2xl:grid-cols-3">{featuredRecipes.filter((recipe) => recipe.data.category == category && recipe.data.id !== id).slice(0,4).map(recipe => {
                 console.log(recipe.slug);
                 return <Animated client:visible extraStyles="">
-                    <Card imgLink={recipe.data.cover} title={recipe.data.title} description={recipe.data.description} trim={true} link={recipe.slug}/>
+                    <Card imgLink={recipe.data.cover} title={recipe.data.title} description={recipe.data.description} trim={true} link={"/food/" + recipe.slug}/>
                     </Animated>
             })}</ul>
         </section>

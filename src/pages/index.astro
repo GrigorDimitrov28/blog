@@ -79,7 +79,6 @@ const latestWorkouts = (await getCollection("gym"));
 							<Animated client:idle extraStyles="">
 								<Card title={r.data.title} description={r.data.description} imgLink={r.data.cover} link={"/food/" + r.slug} trim={true}/>
 							</Animated>
-							
 						))
 					}
 				</ul>
