@@ -25,37 +25,50 @@ function SearchGrid({ content }) {
     }
   }, [filterActive]);
 
+  const handleSearch = () => {
+    let filteredArr = content.filter((item) =>
+      item.data.title.includes(searchValue)
+    );
+    setRenderedContent([...filteredArr]);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.code === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="relative flex flex-col">
+      {filterActive && (
+        <div
+          className={`fixed top-0 left-0 bg-gray-900 opacity-30 w-[100vw] h-[100vh] z-10`}
+        ></div>
+      )}
+
       <h1 className="font-baskerville text-2xl mx-auto mt-4 mb-12 2xl:text-4xl xl 2xl:mt-16">
         My Recipes
       </h1>
-      <h2 className="w-[50%] text-center font-baskerville text-xl mx-auto mb-12 2xl:text-2xl xl 2xl:mt-2">
-        Section is filled with dummy content for development purposes!
-      </h2>
-      <div className=" h-12 w-full flex mb-4 relative">
-        <input
-          id="search-input"
-          type="text"
-          className="focus:outline-none w-[70vw] border-b-[1px] h-8 mt-auto mx-auto border-b-gray-500 lg:w-[50vw] 2xl:w-[24vw]"
-          value={searchValue}
-          placeholder="Search"
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
-        />
-
-        <img
-          src="/search.svg"
-          alt="search"
-          className="absolute right-[14vw] h-8 top-3 hover:cursor-pointer lg:right-[24vw] 2xl:right-[37.5vw]"
-          onClick={() => {
-            let filteredArr = content.filter((item) =>
-              item.data.title.includes(searchValue)
-            );
-            setRenderedContent([...filteredArr]);
-          }}
-        />
+      <div className=" h-12 w-full flex relative">
+        <div className="w-[16em] mx-auto h-8 relative">
+          <input
+            id="search-input"
+            type="text"
+            className="focus:outline-none w-full max-w-[90vw] border-b-[1px] h-full mt-auto mx-auto border-b-gray-500"
+            value={searchValue}
+            placeholder="Search"
+            onKeyDown={handleKeyDown}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
+          />
+          <img
+            src="/search.svg"
+            alt="search"
+            className="absolute right-0 h-6 bottom-1 hover:cursor-pointer"
+            onClick={handleSearch}
+          />
+        </div>
       </div>
       <div
         onClick={() => {
@@ -69,7 +82,7 @@ function SearchGrid({ content }) {
             filterRef.current.classList.add("animate-up");
           }
         }}
-        className="flex h-10 w-[70vw] mx-auto items-center justify-center gap-1 border-[1px] border-black mb-10 hover:cursor-pointer duration-300 hover:bg-gray-100 transition-colors lg:w-[50vw] 2xl:w-[24vw]"
+        className="flex h-10 bg-black text-white mx-auto items-center justify-center gap-2 border-[1px] border-black mb-10 hover:cursor-pointer duration-300 hover:bg-gray-900 transition-colors w-[8em]"
       >
         <img src="/filter.svg" alt="filter" className="h-[40%] mt-1" />
         <span>Filter</span>
@@ -281,7 +294,7 @@ function SearchGrid({ content }) {
                       width="640"
                       src={r.data.cover}
                       alt="cover"
-                      className="hover:scale-125 transition-all duration-300 object-cover w-full h-full"
+                      className="hover:scale-110 transition-all duration-300 object-cover w-full h-full"
                     />
                   </div>
 
@@ -290,9 +303,7 @@ function SearchGrid({ content }) {
                   </h4>
                 </a>
 
-                <p className="text-sm md:text-base line-clamp-2">
-                  {r.data.description}
-                </p>
+                <p className="text-sm line-clamp-2">{r.data.description}</p>
               </li>
             </Animated>
           ))}
